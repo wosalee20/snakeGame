@@ -54,7 +54,7 @@ function gameStart() {
     running = true;
     document.querySelector(".die-sound").pause();
     document.querySelector(".background-sound").play();
-    document.querySelector(".background-sound").volume = 0.1;
+    document.querySelector(".background-sound").volume = 0.5;
     scoreText.textContent = `Score: ${score}`;
     createFood();
     drawFood();
