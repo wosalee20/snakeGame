@@ -3,16 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Snake Game</title>
+    <title>Document</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="favicon.png" type="image/x-icon">
 </head>
 <body>
-    <div id="gameContainer">
-        <canvas id="gameBoard" width="500" height="400"></canvas>
-        <div id="scoreText">0</div>
-        <button id="resetBtn">Reset</button>
+    <img class="displayImg" src="https://wallpaperaccess.com/full/8552481.jpg" alt="snake game" width="600px">
+    <div class="hidden-Sound">
+        <audio class="eat-sound" controls>
+            <source src="https://mohamedelghandour.github.io/Snake/sound/eat.ogg" type="audio/ogg">
+            <source src="https://mohamedelghandour.github.io/Snake/sound/eat.wav" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        <audio class="die-sound" controls>
+            <source src="https://mohamedelghandour.github.io/Snake/sound/gameover.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        <audio class="background-sound" controls loop>
+            <source src="https://mohamedelghandour.github.io/Snake/sound/backgroundmusic.mp3" type="audio/ogg">
+            Your browser does not support the audio element.
+        </audio>
+        
     </div>
+    
+    <div id="gameContainer">
+        
+        <canvas id="gameBoard" width="500" height="400"></canvas>
+        <div id="scoreText">Score: 0</div>
+        <button id="resetBtn">Reset</button>
+        <div id="buttons">
+            <button id="upBtn" class="btn">UP</button> <br>
+            <button id="leftBtn" class="btn">LEFT</button>
+            <button id="rightBtn"class="btn">RIGHT</button><br>
+            <button id="downBtn"class="btn">DOWN</button>
+        </div>
+
+    </div>
+   
     <script src="script.js"></script>
 </body>
 </html>
