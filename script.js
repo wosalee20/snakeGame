@@ -43,9 +43,9 @@ let speed;
 
 //define difficulty levels
 const difficulties = {
-    Easy: 500,
-    Medium: 90,
-    Hard: 60
+    Easy: 400,
+    Medium: 100,
+    Hard: 90
 };
 
 let currentDifficulty = 'Easy' //default difficulty
@@ -79,7 +79,7 @@ function gameStart() {
     running = true;
     document.querySelector(".die-sound").pause();
     document.querySelector(".background-sound").play();
-    document.querySelector(".background-sound").volume = 0.1;
+    document.querySelector(".background-sound").volume = 0.9;
     scoreText.textContent = `Score: ${score}`;
     createFood();
     drawFood();
