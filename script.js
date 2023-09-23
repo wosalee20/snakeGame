@@ -15,6 +15,7 @@ const upBtn = document.querySelector("#upBtn");
 const leftBtn = document.querySelector("#leftBtn");
 const rightBtn = document.querySelector("#rightBtn");
 const downBtn = document.querySelector("#downBtn");
+const pauseBtn = document.querySelector('#pauseBtn');
 
 // Define constants for drawing
 const boardBackground = "yellow";
@@ -37,6 +38,20 @@ let snake = [
     { x: unitSize, y: 0 },
     { x: 0, y: 0 },
 ];
+let pauseState = 'Play';
+let speed;
+
+//define difficulty levels
+const difficulties = {
+    Easy: 500,
+    Medium: 90,
+    Hard: 60
+};
+
+let currentDifficulty = 'Easy' //default difficulty
+
+//Access the difficultyDropdown
+const difficultyDropdown = document.querySelector('#difficultyDropdown');
 
 // Add event listeners
 window.addEventListener("keydown", changeDirection);
@@ -45,16 +60,26 @@ upBtn.addEventListener("click", () => changeDirectionByKey(UP));
 leftBtn.addEventListener("click", () => changeDirectionByKey(LEFT));
 rightBtn.addEventListener("click", () => changeDirectionByKey(RIGHT));
 downBtn.addEventListener("click", () => changeDirectionByKey(DOWN));
+difficultyDropdown.addEventListener('change', ()=>{
+    const selectedDifficulty = difficultyDropdown.value;
+    changeDifficulty(selectedDifficulty);
+})
+pauseBtn.addEventListener('click',gameStart );
+
+
 
 // Start the game
 gameStart();
+
+//function to togglepause
+
 
 // Function to start the game
 function gameStart() {
     running = true;
     document.querySelector(".die-sound").pause();
     document.querySelector(".background-sound").play();
-    document.querySelector(".background-sound").volume = 0.5;
+    document.querySelector(".background-sound").volume = 0.1;
     scoreText.textContent = `Score: ${score}`;
     createFood();
     drawFood();
@@ -71,10 +96,15 @@ function nextTick() {
             drawSnake();
             checkGameOver();
             nextTick();
-        }, 80);
+        }, setGameSpeed());
     } else {
         displayGameOver();
     }
+}
+//function to set gamSpeed
+function setGameSpeed(){
+    speed = difficulties[currentDifficulty];
+    return speed;
 }
 
 // Clear the game board
@@ -96,8 +126,10 @@ function createFood() {
 
 // Draw the food on the canvas
 function drawFood() {
-    ctx.fillStyle = foodColor;
-    ctx.fillRect(foodX, foodY, unitSize, unitSize);
+    const snakeFood = document.querySelector('#snakeFood');
+    ctx.drawImage(snakeFood, foodX, foodY,unitSize, unitSize)
+    // ctx.fillStyle = foodColor;
+    // ctx.fillRect(foodX, foodY, unitSize, unitSize);
 }
 
 // Move the snake
@@ -110,6 +142,8 @@ function moveSnake() {
         scoreText.textContent = `Score: ${score}`;
         document.querySelector(".eat-sound").play();
         createFood();
+        speed = difficulties['Easy'];
+        speed -= 100;
     } else {
         snake.pop();
     }
@@ -150,6 +184,11 @@ function changeDirection(event) {
             yVelocity = unitSize;
             break;
     }
+}
+// function to change difficulty level
+
+function changeDifficulty(difficulty){
+    currentDifficulty = difficulty;
 }
 
 // Change the snake's direction based on button click

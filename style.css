@@ -2,6 +2,19 @@
     text-align: center;
     
 }
+label{
+    font-family: 'Permanent Marker', cursive;
+    font-size: 25px;
+}
+#difficultyDropdown{
+    font-family: 'Permanent Marker', cursive;
+    font-size: 22px;
+    width: 100px;
+    height: 50px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+}
 
 .hidden-Sound, .btn, .displayImg{
     display: none;
@@ -19,7 +32,7 @@
     margin-right: 60px;
 }
 
-#resetBtn{
+#resetBtn, #pauseBtn{
     font-family: 'Permanent Marker', cursive;
     font-size: 22px;
     width: 100px;
@@ -29,7 +42,7 @@
     cursor: pointer;
    
 }
-#resetBtn:hover {
+#pauseBtn:hover,#resetBtn:hover {
     background-color: rgb(16, 230, 123);
 
 
@@ -44,6 +57,7 @@
     #gameContainer{
         text-align: center;
         position: relative;
+        max-height: 800px;
        
        
     }
@@ -56,22 +70,39 @@
         z-index: -1;
     }
     body{
-       
+       background-image: url(https://cdn.tutsplus.com/mobile/uploads/legacy/Corona-SDK_Build-A-Snake-Game/2/1.png);
         background-size: cover;
         background-repeat: no-repeat;
-        height: 300px;
-        width: 300;
-        overflow: hidden;
+        max-height: 100%;
+        width: 100%;
+        overflow-y: auto;
+        
+        
        
     }
+    .overlay{
+        background: linear-gradient(rgba(0, 0, 0,0.5),rgba(0, 0, 0, 0.5));
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        z-index: 1;
+    }
     #gameBoard{
-        width: 400px;
+        width: 360px;
         
-        margin-left: 50px;
-        margin-top: 40px
+        margin-left: -10px;
+        margin-top: 
+    }
+    #pauseBtn{
+        display: none;
+        left: 109px;
+        top: 390px;
+        position: absolute;
     }
 
-    #resetBtn{
+    #resetBtn {
         font-family: 'Permanent Marker', cursive;
         font-size: 22px;
         width: 100px;
@@ -113,5 +144,4 @@
         
     }
 }
-
 
